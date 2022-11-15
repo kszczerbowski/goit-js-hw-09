@@ -47,7 +47,7 @@ countdownBtn.addEventListener('click', () => {
   timer = setInterval(() => {
       difference = chosenDate - new Date();
       convertedDifference = convertMs(difference);
-      for (i=0; i<4; i++) {
+      for (let i=0; i<4; i++) {
         timerParts[i].textContent = convertedDifference.timeArr[i].toString().length === 1 ? addLeadingZero(convertedDifference.timeArr[i].toString()) : convertedDifference.timeArr[i].toString();
       }
       const timerPartsCopy = [...timerParts]
