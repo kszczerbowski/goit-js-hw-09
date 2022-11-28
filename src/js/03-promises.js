@@ -35,6 +35,7 @@ createBtn.addEventListener('click', (event) => {
   if (chosenValues.some(chosenValue => chosenValue === undefined)) {
   Notify.failure("Please fill in all 3 fields!");
   } else {
+    createBtn.setAttribute('disabled', '');
     setTimeout(() => {
       createPromise(1, firstDelay)
         .then(({ position, delay }) => Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`))
@@ -52,7 +53,10 @@ createBtn.addEventListener('click', (event) => {
             Notify.failure(`❌ Rejected promise ${position} in ${delay}ms`)
           });
           i++;
-          if (i > promiseAmount) clearInterval(promiseInterval);
+          if (i > promiseAmount) {
+            createBtn.removeAttribute('disabled');
+            clearInterval(promiseInterval);
+          }
         }, delay);
       }
     }, firstDelay)

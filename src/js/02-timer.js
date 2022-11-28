@@ -44,7 +44,8 @@ flatpickr(calendar, {
     },
 });
 countdownBtn.addEventListener('click', () => {
-  timer = setInterval(() => {
+  countdownBtn.setAttribute('disabled', '');
+    timer = setInterval(() => {
       difference = chosenDate - new Date();
       convertedDifference = convertMs(difference);
       for (let i=0; i<4; i++) {
@@ -52,6 +53,7 @@ countdownBtn.addEventListener('click', () => {
       }
       const timerPartsCopy = [...timerParts]
       if (timerPartsCopy.every(timerPart => timerPart.textContent === "00")) {
+        countdownBtn.removeAttribute('disabled');
         clearInterval(timer);
       }
     }, 1000);
